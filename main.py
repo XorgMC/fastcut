@@ -34,6 +34,9 @@ class MyWindow(QMainWindow, form_class, QObject):
         self.btnLoad.clicked.connect(self.load)
         self.btnPlay.clicked.connect(self.play_pause)
         self.btnStop.clicked.connect(self.stop)
+        self.sldrVolume.valueChanged.connect(self.set_volume)
+
+        self.mediaplayer.audio_set_volume(50)
 
         self.media = None
         self.is_paused = False
@@ -74,6 +77,9 @@ class MyWindow(QMainWindow, form_class, QObject):
     def stop(self):
         self.mediaplayer.stop()
         self.btnPlay.setText("Play")
+
+    def set_volume(self, value):
+        self.mediaplayer.audio_set_volume(value)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
