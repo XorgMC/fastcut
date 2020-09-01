@@ -34,9 +34,16 @@ class MyWindow(QMainWindow, form_class, QObject):
         self.btnLoad.clicked.connect(self.load)
         self.btnPlay.clicked.connect(self.play_pause)
         self.btnStop.clicked.connect(self.stop)
+        self.sldrProgress.sliderMoved.connect(self.set_progress)
+        self.sldrProgress.sliderPressed.connect(self.set_progress)
         self.sldrVolume.valueChanged.connect(self.set_volume)
 
+        self.sldrProgress.setMaximum(1000)
         self.mediaplayer.audio_set_volume(50)
+
+        self.timer = QtCore.QTimer(self)
+        self.timer.setInterval(100)
+        self.timer.timeout.connect(self.update_ui)
 
         self.media = None
         self.is_paused = False
@@ -65,6 +72,7 @@ class MyWindow(QMainWindow, form_class, QObject):
             self.mediaplayer.pause()
             self.btnPlay.setText("Play")
             self.is_paused = True
+            self.timer.stop()
         else:
             if self.mediaplayer.play() == -1:
                 self.load()
@@ -72,6 +80,7 @@ class MyWindow(QMainWindow, form_class, QObject):
 
             self.mediaplayer.play()
             self.btnPlay.setText("Pause")
+            self.timer.start()
             self.is_paused = False
 
     def stop(self):
@@ -80,6 +89,36 @@ class MyWindow(QMainWindow, form_class, QObject):
 
     def set_volume(self, value):
         self.mediaplayer.audio_set_volume(value)
+
+    def set_progress(self):
+        # The vlc MediaPlayer needs a float value between 0 and 1, Qt uses
+        # integer variables, so you need a factor; the higher the factor, the
+        # more precise are the results (1000 should suffice).
+        
+        # Set the media position to where the slider was dragged
+        self.timer.stop()
+        position = self.sldrProgress.value()
+        self.mediaplayer.set_position(position / 1000.0)
+        self.timer.start()
+
+    def update_ui(self):
+        # Set the slider's position to its corresponding media position
+        # Note that the setValue function only takes values of type int,
+        # so we must first convert the corresponding media position.
+
+        media_pos = int(self.mediaplayer.get_position() * 1000)
+        self.sldrProgress.setValue(media_pos)
+
+        # No need to call this function if nothing is played
+        if not self.mediaplayer.is_playing():
+            self.timer.stop()
+
+            # After the video finished, the play button stills shows "Pause",
+            # which is not the desired behavior of a media player.
+            # This fixes that "bug".
+            if not self.is_paused:
+                self.stop()
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
