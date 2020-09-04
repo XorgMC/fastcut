@@ -107,6 +107,17 @@ class MyWindow(QMainWindow, form_class, QObject):
         # so we must first convert the corresponding media position.
 
         media_pos = int(self.mediaplayer.get_position() * 1000)
+        media_endTime = self.mediaplayer.get_length() // 1000
+        media_curTime = self.mediaplayer.get_time() // 1000
+
+        media_endTimeMin = media_endTime // 60
+        media_endTimeSec = media_endTime % 60
+        self.lbEnd.setText("%d:%d" % (media_endTimeMin, media_endTimeSec))
+
+        media_curTimeMin = media_curTime // 60
+        media_curTimeSec = media_curTime % 60
+        self.lbStart.setText("%d:%d" % (media_curTimeMin, media_curTimeSec))
+
         self.sldrProgress.setValue(media_pos)
 
         # No need to call this function if nothing is played
