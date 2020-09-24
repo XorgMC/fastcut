@@ -47,6 +47,7 @@ class MyWindow(QMainWindow, form_class, QObject):
 
         self.media = None
         self.is_paused = False
+        self.is_stopped = True
 
     def load(self):
         fname = QFileDialog.getOpenFileName(self)
@@ -68,6 +69,8 @@ class MyWindow(QMainWindow, form_class, QObject):
         self.play_pause()
 
     def play_pause(self):
+        self.is_stopped = False
+
         if self.mediaplayer.is_playing():
             self.mediaplayer.pause()
             self.btnPlay.setText("Play")
@@ -84,6 +87,7 @@ class MyWindow(QMainWindow, form_class, QObject):
             self.is_paused = False
 
     def stop(self):
+        self.is_stopped = True
         self.mediaplayer.stop()
         self.btnPlay.setText("Play")
 
@@ -105,6 +109,14 @@ class MyWindow(QMainWindow, form_class, QObject):
         # Set the slider's position to its corresponding media position
         # Note that the setValue function only takes values of type int,
         # so we must first convert the corresponding media position.
+
+        if not self.media:
+            return
+
+        if self.is_stopped:
+            self.lbStart.setText("00:00")
+            self.sldrProgress.setValue(0)
+            return
 
         media_pos = int(self.mediaplayer.get_position() * 1000)
         media_endTime = self.mediaplayer.get_length() // 1000
