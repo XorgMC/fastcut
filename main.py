@@ -124,11 +124,11 @@ class MyWindow(QMainWindow, form_class, QObject):
 
         media_endTimeMin = media_endTime // 60
         media_endTimeSec = media_endTime % 60
-        self.lbEnd.setText("%d:%d" % (media_endTimeMin, media_endTimeSec))
+        self.lbEnd.setText("%02d:%02d" % (media_endTimeMin, media_endTimeSec))
 
         media_curTimeMin = media_curTime // 60
         media_curTimeSec = media_curTime % 60
-        self.lbStart.setText("%d:%d" % (media_curTimeMin, media_curTimeSec))
+        self.lbStart.setText("%02d:%02d" % (media_curTimeMin, media_curTimeSec))
 
         self.sldrProgress.setValue(media_pos)
 
