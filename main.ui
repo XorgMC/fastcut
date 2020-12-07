@@ -111,6 +111,19 @@
      <string>--:--</string>
     </property>
    </widget>
+   <widget class="QLabel" name="lbVol">
+    <property name="geometry">
+     <rect>
+      <x>289</x>
+      <y>133</y>
+      <width>31</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>50%</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

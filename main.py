@@ -93,6 +93,7 @@ class MyWindow(QMainWindow, form_class, QObject):
 
     def set_volume(self, value):
         self.mediaplayer.audio_set_volume(value)
+        self.lbVol.setText("%s%%" % value)
 
     def set_progress(self):
         # The vlc MediaPlayer needs a float value between 0 and 1, Qt uses
