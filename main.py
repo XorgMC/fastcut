@@ -75,7 +75,6 @@ class MyWindow(QMainWindow, form_class, QObject):
             self.mediaplayer.pause()
             self.btnPlay.setText("Play")
             self.is_paused = True
-            self.timer.stop()
         else:
             if self.mediaplayer.play() == -1:
                 self.load()
@@ -135,8 +134,6 @@ class MyWindow(QMainWindow, form_class, QObject):
 
         # No need to call this function if nothing is played
         if not self.mediaplayer.is_playing():
-            self.timer.stop()
-
             # After the video finished, the play button stills shows "Pause",
             # which is not the desired behavior of a media player.
             # This fixes that "bug".
