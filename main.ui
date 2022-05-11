@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>323</width>
-    <height>198</height>
+    <width>491</width>
+    <height>484</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>40</y>
-      <width>101</width>
+      <y>380</y>
+      <width>41</width>
       <height>51</height>
      </rect>
     </property>
@@ -30,9 +30,9 @@
    <widget class="QPushButton" name="btnStop">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>40</y>
-      <width>101</width>
+      <x>80</x>
+      <y>380</y>
+      <width>41</width>
       <height>51</height>
      </rect>
     </property>
@@ -43,9 +43,9 @@
    <widget class="QPushButton" name="btnLoad">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>110</y>
-      <width>101</width>
+      <x>0</x>
+      <y>380</y>
+      <width>41</width>
       <height>51</height>
      </rect>
     </property>
@@ -56,8 +56,8 @@
    <widget class="QSlider" name="sldrVolume">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>130</y>
+      <x>330</x>
+      <y>390</y>
       <width>100</width>
       <height>22</height>
      </rect>
@@ -75,9 +75,9 @@
    <widget class="QSlider" name="sldrProgress">
     <property name="geometry">
      <rect>
-      <x>43</x>
-      <y>10</y>
-      <width>240</width>
+      <x>30</x>
+      <y>340</y>
+      <width>401</width>
       <height>22</height>
      </rect>
     </property>
@@ -88,8 +88,8 @@
    <widget class="QLabel" name="lbStart">
     <property name="geometry">
      <rect>
-      <x>7</x>
-      <y>10</y>
+      <x>0</x>
+      <y>340</y>
       <width>41</width>
       <height>17</height>
      </rect>
@@ -101,8 +101,8 @@
    <widget class="QLabel" name="lbEnd">
     <property name="geometry">
      <rect>
-      <x>289</x>
-      <y>10</y>
+      <x>440</x>
+      <y>340</y>
       <width>41</width>
       <height>17</height>
      </rect>
@@ -114,8 +114,8 @@
    <widget class="QLabel" name="lbVol">
     <property name="geometry">
      <rect>
-      <x>289</x>
-      <y>133</y>
+      <x>440</x>
+      <y>390</y>
       <width>31</width>
       <height>16</height>
      </rect>
@@ -124,16 +124,77 @@
      <string>50%</string>
     </property>
    </widget>
+   <widget class="QFrame" name="video_frame">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>471</width>
+      <height>321</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnStartCut">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>380</y>
+      <width>41</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;--</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnEndCut">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>380</y>
+      <width>41</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>--&gt;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnStartConv">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>380</y>
+      <width>41</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>323</width>
-     <height>21</height>
+     <width>491</width>
+     <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuLoad">
+    <property name="title">
+     <string>Load</string>
+    </property>
+   </widget>
+   <addaction name="menuLoad"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
